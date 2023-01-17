@@ -194,48 +194,34 @@ button2.addEventListener("click", () => {
 })
 
 
-//Microphone active 
+//Microphone active stuffs
 let recognition = new webkitSpeechRecognition() || new SpeechRecognition();
 
 
+function aboutBook(e) {
+    let speakValue = e.results[0][0].transcript;
+    speakValue = " " + speakValue
+    aboutBookEl.innerHTML += speakValue
+
+}
+
+// click mic and start record mic
 mic.addEventListener("click", () => {
     console.log("ok")
     recognition.start();
-    console.log(recognition)
 
 })
+
+//Listen and result
 recognition.addEventListener('result', (e) => {
-    // const speakValue = e.results[0][0].transcript;
+    aboutBook(e)
 });
 
-// console.log("cls", closePage)
-
-// closePage.addEventListener("click", () => console.log("ya"))
-//CLose page
-// closePage.addEventListener("click", () => {
-//     // booksArray.forEach((data, index) => {
-//     //     if (data.classList.contains("active")) {
-//     //         data.classList.remove("active")
-//     //     };
-
-
-//     // })
-
-
-//     console.log("asdh")
+//For ongoing speaking
+recognition.addEventListener("end", () => recognition.start())
 
 
 
 
-// })
 
-
-
-
-//Modal Open /close 
-// booksArray.forEach((el)=>{
-//     el.addEventListener("click",()=>{
-//         el.classList.toggle("active")
-//     })
-// })
 
